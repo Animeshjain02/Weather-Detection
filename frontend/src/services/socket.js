@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
-const URL = process.env.NODE_ENV === 'production' 
-  ? undefined 
+const URL = import.meta.env.MODE === 'production' 
+  ? (import.meta.env.VITE_BACKEND_URL || window.location.origin)
   : 'http://localhost:5000';
 
 export const socket = io(URL, {
