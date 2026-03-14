@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.theme-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  filter: var(--map-filter, none);
+}
+
+.dark .leaflet-container {
+  --map-filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+.bg-animate {
+  animation: pulse-slow 10s infinite;
+}
+
+/* Custom Map Marker Pulse */
+.marker-pulse-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.marker-pulse {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #06b6d4;
+  border-radius: 50%;
+  animation: marker-animate 1.5s infinite;
+}
+
+.marker-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background: #06b6d4;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+@keyframes marker-animate {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  background: white !important;
+  color: #0f172a !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.leaflet-popup-tip {
+  background: white !important;
+}
+
+.dark .leaflet-popup-tip {
+  background: #1e293b !important;
+}
+
+/* User Marker Dot */
+.user-marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-marker-dot {
+  width: 14px;
+  height: 14px;
+  background: #3b82f6; /* Blue for user */
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
